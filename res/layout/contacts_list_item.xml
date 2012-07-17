@@ -1,0 +1,12 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <include layout="@layout/contacts_list_item_header" />
+    <include layout="@android:layout/simple_list_item_1" />
+    <View android:id="@+id/list_divider"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:drawable/divider_horizontal_dark" />
+</LinearLayout>
