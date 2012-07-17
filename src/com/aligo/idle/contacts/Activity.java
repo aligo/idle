@@ -1,6 +1,6 @@
 package com.aligo.idle.contacts;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 import com.aligo.idle.R;
 import com.aligo.idle.widget.PinnedHeaderListView;
@@ -9,8 +9,11 @@ import com.aligo.idle.widget.StringArrayAlphabetIndexer;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,63 +26,6 @@ import android.widget.TextView;
 
 public class Activity extends ListActivity {
 
-    private static final String [] names = {
-        "Geoffrey Hampton",
-        "Ciaran Holcomb",
-        "Marshall Kelly",
-        "Mufutau Saunders",
-        "Ishmael Durham",
-        "Brock Golden",
-        "Dalton Britt",
-        "Tad Wright",
-        "Carl Olsen",
-        "Jack Cote",
-        "Damian Carpenter",
-        "Burke Cochran",
-        "Sebastian Mcmahon",
-        "Talon Stout",
-        "Anthony Johnston",
-        "Calvin Howell",
-        "Simon Hale",
-        "Talon Leon",
-        "Stephen Mayo",
-        "Ezra Graham",
-        "Ryan Juarez",
-        "Nathan Bowman",
-        "Kermit Mcclure",
-        "Axel Rhodes",
-        "David Maynard",
-        "Wing Larsen",
-        "Noah Buchanan",
-        "Nathan Mayer",
-        "Nigel Mccormick",
-        "Herrod Rivera",
-        "Armando Meyers",
-        "Colin Velasquez",
-        "Zeus Brooks",
-        "Hilel Stafford",
-        "Merrill Russo",
-        "Cole Lang",
-        "Dieter Velez",
-        "Lance Stokes",
-        "Jarrod Oneil",
-        "Louis Robbins",
-        "Daquan Mclean",
-        "Dorian Wong",
-        "Nicholas Adams",
-        "Kaseem Holt",
-        "Kevin Alvarado",
-        "Clarke Munoz",
-        "Logan Holmes",
-        "Kennedy Moody",
-        "Joshua Barker",
-        "Jamal David"
-    };
-   
-    static {
-            Arrays.sort(names);
-    }
-
     private NamesAdapter mAdapter;
    
     private int mPinnedHeaderBackgroundColor;
@@ -88,15 +34,34 @@ public class Activity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       
         setContentView(R.layout.contacts);
-   
+        String[] names = getContacts();
         mAdapter = new NamesAdapter(this, R.layout.contacts_list_item, android.R.id.text1, names);
         setListAdapter(mAdapter);
        
         setupListView();
     }
    
+    private String[] getContacts() {
+    	ArrayList<String> contacts_name = new ArrayList<String>();
+    	Uri uri = ContactsContract.Contacts.CONTENT_URI;
+        String[] projection = new String[] {
+                ContactsContract.Contacts._ID,
+                ContactsContract.Contacts.DISPLAY_NAME
+        };
+//        String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
+        Cursor cur =  managedQuery(uri, projection, null, null, null);
+    	if (cur.getCount() > 0) {
+    		while (cur.moveToNext()) {
+    			String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+    			contacts_name.add(name);
+    		}
+    	}
+    	String[] result = new String[ contacts_name.size() ];
+    	contacts_name.toArray( result );
+    	return result;
+    }
+    
     private void setupListView() {
     	PinnedHeaderListView listView = (PinnedHeaderListView) findViewById(android.R.id.list);
         listView.setPinnedHeaderView(LayoutInflater.from(this).inflate(R.layout.contacts_list_item_header, listView, false));
