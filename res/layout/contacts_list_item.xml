@@ -2,10 +2,10 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp">
+    android:padding="6dp">
 
     <TextView
-        android:id="@+id/contact_name"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:gravity="center_vertical"

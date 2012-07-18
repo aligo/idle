@@ -1,10 +1,12 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/header_text"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="25dip"
-    android:textStyle="bold"
-    android:background="#ff202020"
-    android:textColor="#ffffffff"
-    android:textSize="14sp"
-    android:paddingLeft="6dip"
-    android:gravity="center_vertical" />
+    android:layout_height="wrap_content"
+    android:background="#555555"
+    android:paddingLeft="10dp">
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:textColor="#ffffff"
+        android:gravity="center_vertical"/>
+</LinearLayout>
