@@ -2,7 +2,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="#555555"
-    android:paddingLeft="10dp">
+    android:paddingLeft="12dp">
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
