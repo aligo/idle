@@ -32,14 +32,16 @@ public class ContactsList extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contacts);
-        adapter = new ContactsAdapter(this, getContacts());
+        
+        contacts = new ArrayList<Map<String, String>>();
+        addMyself();
+        getContacts();
+        adapter = new ContactsAdapter(this, contacts);
         listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(adapter);
     }
    
-    private List<Map<String, String>> getContacts() {
-        contacts = new ArrayList<Map<String, String>>();
-        addMyself();
+    private void getContacts() {
         Uri uri = ContactsContract.Contacts.CONTENT_URI;
         String[] projection = new String[] {
                 ContactsContract.Contacts._ID,
@@ -60,7 +62,6 @@ public class ContactsList extends Activity {
                 contacts.add(itemmap);
             }
         }
-        return contacts;
     }
     
     private void addMyself() {
