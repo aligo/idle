@@ -19,7 +19,7 @@ public final class Main extends TabActivity
         setContentView(R.layout.main);
         mTabHost = getTabHost();
     
-        Intent intent1 = new Intent(this,com.aligo.idle.contacts.Activity.class);
+        Intent intent1 = new Intent(this,com.aligo.idle.contacts.ContactsList.class);
         createTab("Idle",intent1);
     
         mTabHost.setCurrentTab(1);
