@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 public final class Main extends TabActivity
 {
-	private TabHost mTabHost;
+    private TabHost mTabHost;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-    	super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         mTabHost = getTabHost();
     
@@ -25,7 +25,7 @@ public final class Main extends TabActivity
         mTabHost.setCurrentTab(1);
     }
     private void createTab(String text ,Intent intent){
-    	mTabHost.addTab(mTabHost.newTabSpec(text).setIndicator(createTabView(text)).setContent(intent));
+        mTabHost.addTab(mTabHost.newTabSpec(text).setIndicator(createTabView(text)).setContent(intent));
     }
     private View createTabView(String text) {
         View view = LayoutInflater.from(this).inflate(R.layout.tab_indicator, null);
