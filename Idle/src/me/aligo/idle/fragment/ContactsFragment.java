@@ -7,19 +7,13 @@ import java.util.Map;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 
-import me.aligo.idle.R;
-import android.content.Context;
+import me.aligo.idle.adapter.ContactsAdapter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 public class ContactsFragment extends SherlockListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 	
@@ -29,7 +23,7 @@ public class ContactsFragment extends SherlockListFragment implements LoaderMana
 	
     public void onResume() { 
         super.onResume(); 
-		getLoaderManager().initLoader(0, null, this);
+		getLoaderManager().restartLoader(0, null, this);
     }
 	
 	@Override
@@ -66,7 +60,6 @@ public class ContactsFragment extends SherlockListFragment implements LoaderMana
  
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        // TBD
     }
     
     private void addMyself() {
@@ -78,28 +71,6 @@ public class ContactsFragment extends SherlockListFragment implements LoaderMana
         item.put("name", "My name");
         item.put("type", "self");
         contacts.add(item);
-    }
-	
-    private static class ContactsAdapter extends ArrayAdapter<Map<String, String>> {
-
-		public ContactsAdapter(ContactsFragment contactsFragment, Context context, List<Map<String, String>> contacts) {
-			super(context, 0, contacts);
-		}
-		@Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View view = convertView;
-            Map<String, String> map = getItem(position);
-            if ( map.get("type") == "header") {
-            	view = LayoutInflater.from(getContext()).inflate(R.layout.contact_item_header, null);
-                TextView textView = (TextView) view.findViewById(R.id.name);
-                textView.setText(getItem(position).get("name"));
-            } else {
-            	view = LayoutInflater.from(getContext()).inflate(R.layout.contact_item, null);
-                TextView textView = (TextView) view.findViewById(R.id.name);
-                textView.setText(getItem(position).get("name"));
-            }
-            return view;
-        }
     }
 	
 }
