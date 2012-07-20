@@ -5,7 +5,7 @@
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/display_name"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:gravity="center_vertical"

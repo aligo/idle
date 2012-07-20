@@ -4,7 +4,7 @@
     android:background="#555555"
     android:paddingLeft="12dp">
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:textColor="#ffffff"
