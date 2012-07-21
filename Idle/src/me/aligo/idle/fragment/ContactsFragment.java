@@ -39,10 +39,10 @@ public class ContactsFragment extends SherlockListFragment implements LoaderMana
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         items = new ArrayList<BaseModel>();
-        items.add(new ListSection("Myself"));
-        items.add(new Contact("My Name"));
+        items.add(new ListSection("我"));
+        items.add(new Contact("我的名字"));
         if (cursor.getCount() > 0) {
-            items.add(new ListSection("Contacts (" + cursor.getCount() + ")"));
+            items.add(new ListSection("好友 (" + cursor.getCount() + ")"));
             while (cursor.moveToNext()) {
                 String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                 items.add(new Contact(name));

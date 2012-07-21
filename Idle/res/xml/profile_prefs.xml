@@ -1,0 +1,8 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="idle_profile"
+    android:title="个人信息设置">
+    <EditTextPreference
+        android:key="idle_profile_name"
+        android:title="名字"
+        android:dialogTitle="名字" />
+</PreferenceScreen>
